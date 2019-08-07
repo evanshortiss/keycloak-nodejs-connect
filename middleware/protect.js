@@ -24,7 +24,10 @@ function forceLogin (keycloak, request, response) {
   let protocol = request.protocol;
   let hasQuery = ~(request.originalUrl || request.url).indexOf('?');
 
-  console.log('[keycloak] request proto: ', protocol)
+  console.log('[keycloak] detected request proto (req.protocol): ', protocol)
+  console.log('[keycloak] request.secure: ', req.secure)
+  console.log('[keycloak] request.headers:\n', JSON.stringify(req.headers, null, 2))
+  console.log('[keycloak] request.connection.encrypted: ', req.connection.encrypted)
   
   let redirectUrl = protocol + '://' + host + (port === '' ? '' : ':' + port) + (request.originalUrl || request.url) + (hasQuery ? '&' : '?') + 'auth_callback=1';
   
